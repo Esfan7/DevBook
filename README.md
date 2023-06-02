@@ -2,7 +2,7 @@
 by Cristino Castro, Daniella Ferrufino, Esfandiar Behbehani, Dante Ramsey ![Github licence](http://img.shields.io/badge/license-MIT-yellowgreen.svg)
 
 ## Description
-DevBook is an application that allows users to post there projects and interact with other users projects, you may also show your support by donating to your favorite users.
+DevBook is an application that allows users to post their projects and interact with other users projects, you may also show your support by donating to your favorite users.
 
 ## Table of Contents
 - [DevBook](#devbook)
