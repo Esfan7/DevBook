@@ -12,6 +12,7 @@ DevBook is an application that allows users to post their projects and interact 
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
+  - [Routes](#routes)
 
 ## Technologies Used
 *Express JS
@@ -32,3 +33,22 @@ This application will allow users to create an account, make a post, view posts 
 
 ## License
 This application is licensed under the MIT license.
+
+
+### Routes
+
+GET - /api/project/
+List of projects
+
+GET = /api/donate/:project_id
+Get all donations for a specific project
+
+POST - /api/project/
+Create a project
+Keys: title,description, goal :number , picture, completion :date
+
+POST = /api/donate/
+Keys: amount :number, name, comment, project_id
+
+
+

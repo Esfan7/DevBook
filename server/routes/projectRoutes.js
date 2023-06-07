@@ -42,7 +42,7 @@ router.post("/", async (req, res)=>{
 })
 
 
-//User.update
+//update
 router.put('/:id', async (req, res) => {
    
     try{
@@ -65,11 +65,11 @@ router.put('/:id', async (req, res) => {
 
 
 
-//User.destroy{id:}
+//destroy{id:}
 router.delete('/:id',async (req, res) => {
 
 
-      //delete thought
+      //delete 
       try{
         const result = await Project.deleteOne({
           _id: new ObjectId(req.params.id)
