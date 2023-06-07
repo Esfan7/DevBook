@@ -37,8 +37,6 @@ app.use("/api/project", projectRoutes)
 
 
 
-//virtual friend count
-//virutal raeciont count
 
 
 
