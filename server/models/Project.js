@@ -18,6 +18,7 @@ const projectSchema = Schema({
         type: String
     }
 
+
 })
 
 const Project = model("Project", projectSchema);

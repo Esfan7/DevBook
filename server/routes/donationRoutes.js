@@ -8,7 +8,7 @@ const Project = require('../models/Project');
 const Donation = require('../models/Donation');
 const ObjectId = require('mongodb').ObjectId;
 
-//api/users
+//get all donations
 router.get("/", async (req, res)=>{
 
     try{
@@ -23,16 +23,33 @@ router.get("/", async (req, res)=>{
 })
 
 
+router.get("/:id", async (req, res)=>{
+
+  try{
+      const result = await Donation.find({
+        project_id: new ObjectId(req.params.id)
+      });
+  
+      res.json(result)
+
+  } catch(err){
+      console.log(err)
+  }
+
+})
 
 
+
+
+//create a donation
 router.post("/", async (req, res)=>{
 
     try{
         const result = await Donation.create({
-            amount: req.body.amount,
+            amount: parseFloat(req.body.amount),
             name: req.body.name,
-            comment: parseFloat(req.body.goal),
-            project_id: req.body.picture,
+            comment: req.body.comment,
+            project_id: req.body.project_id,
             
         });
         res.json(result)
@@ -44,25 +61,6 @@ router.post("/", async (req, res)=>{
 
 
 //update
-router.put('/:id', async (req, res) => {
-   
-    try{
-      const result = await Donation.findByIdAndUpdate(req.params.id,{
-            title: req.body.title,
-            description: req.body.description,
-            goal: parseFloat(req.body.goal),
-            picture: req.body.picture,
-            completion: req.body.completion,
-
-      });
-
-      res.json(result);
-  
-    } catch (err){
-      console.log(err)
-    }
-  
-  });
 
 
 
@@ -81,9 +79,6 @@ router.delete('/:id',async (req, res) => {
         console.log(err)
       }
   
-
-
-
 
  });
 

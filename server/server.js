@@ -4,8 +4,10 @@ const cors = require('cors');
 const app = express();
 const PORT = 3001;
 const mongoose = require('mongoose');
-const projectRoutes = require("./routes/projectRoutes")
+const projectRoutes = require("./routes/projectRoutes");
+const donationRoutes = require("./routes/donationRoutes");
 
+require('dotenv').config();
 
 app.use(express.json());
 //translate body for post requests
@@ -18,7 +20,7 @@ app.use(express.static('public'))
 
 
 async function main(){
-    await mongoose.connect('mongodb+srv://eafanbeh:Gencoupe20t@cluster0.s9qly3h.mongodb.net/?retryWrites=true&w=majority')
+    await mongoose.connect(process.env.MONGO_CONNECT)
 }
 
 main().catch(err=> console.log(err))
@@ -26,11 +28,12 @@ main().catch(err=> console.log(err))
 
 //declare a route
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
+    res.sendFile(__dirname + 'client/public/index.html');
 });
 
 
 app.use("/api/project", projectRoutes)
+app.use("/api/donate", donationRoutes)
 
 
 
