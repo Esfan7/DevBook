@@ -5,11 +5,18 @@ import './index.css';
 import './normalize.css'
 import App from './App';
 import ProfilePage from './components/pages/ProfilePage';
+import ProjectPage from './components/pages/ProjectPage';
+import testProject from './testData';
 
 import {
     createBrowserRouter,
     RouterProvider,
   } from "react-router-dom";
+
+
+  
+ 
+
 
   const router = createBrowserRouter([
     {
@@ -19,6 +26,10 @@ import {
     {
         path: "/profile",
         element: <ProfilePage/>,
+      },
+      {
+        path: "/project/:projectId",
+        element: <ProjectPage project={testProject} />
       }
   ]);
 
@@ -26,5 +37,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <RouterProvider router={router} />
 );
+
+
 
 
