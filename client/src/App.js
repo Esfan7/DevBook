@@ -1,11 +1,10 @@
+// import React from 'react';
+// import AppContainer from './components/AppContainer';
 
+// const App = () => {
 
-function App() {
-  return (
-    <div className="App">
-    
-    </div>
-  );
-}
+// return <AppContainer />;
 
-export default App;
+// }
+
+// export default App;
