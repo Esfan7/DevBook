@@ -7,7 +7,16 @@ const onChange = (e) => {
     console.log('Change:', e.target.value);
   };
 
-const Comments = ({comments}) => {
+const handleCommentSubmit = (projectId) =>{
+    const content = document.getElementById('commentInputForm').value;
+    console.log(`
+    Comment submitted:
+    User: test user
+    Text: ${content}
+    projectId: ${projectId}`)
+};
+
+const Comments = ({comments, projectId}) => {
 
     return (
         <div id="commentsContainer">
@@ -30,6 +39,7 @@ const Comments = ({comments}) => {
             <div id="commentForm">
                 <p>User</p>
                 <TextArea
+                    id='commentInputForm'
                     showCount
                     maxLength={200}
                     style={{
@@ -39,7 +49,7 @@ const Comments = ({comments}) => {
                     onChange={onChange}
                     placeholder="Comment here"
                 />
-                <Button type="primary" onClick={()=>{console.log('comment made')}}>Submit</Button>
+                <Button type="primary" onClick={()=>{handleCommentSubmit(projectId)}}>Submit</Button>
             </div>
 
         </div>
