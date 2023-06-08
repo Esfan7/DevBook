@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-import { Button, Space, Timeline, Progress} from 'antd';
+import { Button, Space, Timeline, Progress, Drawer} from 'antd';
 import Comments from '../Comments';
 // import { QUERY_SINGLE_PROJECT } from '../../utils/queries';
 import testProjects from '../../testData';
 
 
 const ProjectPage = ({projects}) => {
+    const [open, setOpen] = useState(false);
+    const [showNotification, setShowNotification ] = useState(false);
+    const showDrawer = () => {
+        setOpen(true);
+    };
+    const onClose = () => {
+        setOpen(false);
+        setShowNotification(false)
+    };
+
     const { projectId } = useParams();
     // const project = projects[projectId-1];
     const project = testProjects[projectId-1];
@@ -17,6 +27,13 @@ const ProjectPage = ({projects}) => {
     //     variables: {_id: projectId}
     // });
     const loading = false;
+
+    const handlePayment = () => {
+        const donationAmount= document.getElementById('dollarAmountInput').value
+        if(donationAmount !== null){
+            setShowNotification(true);
+        } 
+    }
     if(loading){
         return <div>loading</div>
     } else{
@@ -50,7 +67,22 @@ const ProjectPage = ({projects}) => {
                     <Space wrap>
                         <Progress type="circle" percent={100*(project.donations/project.fundingGoal)}/>
                     </Space>
-    
+                    <Button type="primary" onClick={() => showDrawer()}>Donate</Button>
+                    <Drawer title="Donate" placement="right" onClose={onClose} open={open}>
+                        <form id="donationForm">
+                            <p>Enter donation amount below</p><br></br>
+                            <p>{project.title}</p>
+                            <p>Funding Gloal: {project.fundingGoal}</p>
+                            <p>Only ${project.fundingGoal-project.donations} more to meet the goal! </p>
+                            <label for = "dollarAmount">$ </label>
+                            <input type="number" name="dollarAmount" id="dollarAmountInput" required/>
+                            <button type="submit" onClick={()=>handlePayment()}>Submit Payment Request</button>
+                            {
+                                showNotification ? <p>Submitted!</p> : null
+                            }
+                        </form>
+                        
+                    </Drawer>
                 </div>
                 <Comments comments={project.comments} projectId={project._id}/>
             </div>
@@ -60,22 +92,3 @@ const ProjectPage = ({projects}) => {
 
 
 export default ProjectPage;
-
-                // <table>
-                //     <tr>
-                //         <th>date</th>
-                //         <th>description</th>
-                //     </tr>
-                //         {project.milestones.map((milestone)=>{
-                //             return(
-                //                 <tr>
-                //                     <td>
-                //                         {milestone.date}
-                //                     </td>
-                //                     <td>
-                //                         {milestone.description}
-                //                     </td>
-                //                 </tr>
-                //             )
-                //         })}
-                // </table>
