@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 
 
 
-const Profile = require('../models/Profile')
+const Profile = require('../models/User')
 const ObjectId = require('mongodb').ObjectId;
 
 //api/users

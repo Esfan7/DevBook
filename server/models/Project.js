@@ -1,13 +1,51 @@
 const {Schema, model} = require('mongoose');
 
-
-
-
+const milestoneSchema = Schema({
+    _id: {
+        type: Schema.Types.ObjectId,
+        default: () => new mongoose.Types.ObjectId()
+    },
+    date: {
+        type: Date
+    },
+    description: {
+        type: String,
+        maxlength: 100
+    },
+    status: {
+        type: String,
+        required: true
+    },
+},
+{
+    toJSON: {
+        virtuals: true,
+        getters: true,
+    },
+    id: true,
+});
 
 const projectSchema = Schema({
-   title: {
-    type: String
-   },
+    _id: {
+        type: Schema.Types.ObjectId,
+        default: () => new mongoose.Types.ObjectId(),
+    }, 
+    createdAt: {
+        type: Date,
+        default: Date.now,
+        get: (timestamp) => dateFormat(timestamp),
+      },
+    ownerUsername: {
+        type: String,
+        required: true,
+    },
+    title: {
+        type: String,
+        unique: false,
+        required: true,
+        trim: true,
+        maxlength: 100
+    },
     description:{
         type:String,
         maxlength: 300
@@ -16,20 +54,38 @@ const projectSchema = Schema({
         type: Number
     },
     status: {
-        type: String
+        type: String,
+        required: true,
     },
-    user_id: {
-        type: Schema.Types.ObjectId 
-    }, 
-    comments: {
-        type: Array
+    donations: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Donation'
+        },
+    ], 
+    comments: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Comment'
+        },
+    ],
+    milestones: [milestoneSchema]
+},
+{
+    toJSON: {
+        virtuals: true,
+        getters: true,
     },
-    milestones: {
-        type: Array
-    }
+    id: true,
+});
 
-
-})
+projectSchema.virtual('donationCount').get(() => {
+    const total = 0;
+    for (i = 0; i< this.donations.length; i++){
+        total = total + this.donations[i].amount
+    };
+    return total;
+});
 
 const Project = model("Project", projectSchema);
 

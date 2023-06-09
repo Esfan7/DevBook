@@ -1,6 +1,6 @@
-const {Schema, model} = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-const donationSchema = Schema({
+const commentSchema = Schema({
     _id: {
         type: Schema.Types.ObjectId,
         default: () => new mongoose.Types.ObjectId()
@@ -9,18 +9,14 @@ const donationSchema = Schema({
         type: Date,
         default: Date.now,
         get: (timestamp) => dateFormat(timestamp),
-      },  
-    amount: {
-        type: Number,
-        required: true
-    },
+      },
     username:{
         type:String,
         maxlength: 20
     },
     comment:{
         type: String,
-        maxlength: 40
+        maxlength: 200
     },
    projectId:{
         type: String,
@@ -35,6 +31,6 @@ const donationSchema = Schema({
     id: true,
 });
 
-const Donation = model( "Donation", donationSchema);
+const Comment = model( "Comment", donationSchema);
 
-module.exports = Donation
+module.exports = Comment
