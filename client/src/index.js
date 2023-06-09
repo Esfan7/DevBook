@@ -9,6 +9,7 @@ import App from './App';
 import ProfilePage from './components/pages/ProfilePage';
 import ProjectPage from './components/pages/ProjectPage';
 import testProjects from './testData';
+import DonationSuccessPage from './components/pages/DonationSuccessPage'
 
 import {
     createBrowserRouter,
@@ -35,6 +36,14 @@ const router = createBrowserRouter([
     {
       path: "/project/:projectId",
       element: <ProjectPage projects={testProjects} />
+    },
+    {
+      path: "/donation/success?:dollarAmount&:projectTitle",
+      element: <DonationSuccessPage />
+    },
+    {
+      path: "/donation/success",
+      element: <DonationSuccessPage />
     }
 ]);
 

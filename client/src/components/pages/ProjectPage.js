@@ -29,8 +29,9 @@ const ProjectPage = ({projects}) => {
     const loading = false;
 
     const handlePayment = () => {
-        const donationAmount= document.getElementById('dollarAmountInput').value
-        if(donationAmount !== null){
+        const donationAmount= document.getElementById('dollarAmountInput').value;
+        console.log(typeof donationAmount)
+        if(donationAmount !== ''){
             setShowNotification(true);
         } 
     }
@@ -69,17 +70,19 @@ const ProjectPage = ({projects}) => {
                     </Space>
                     <Button type="primary" onClick={() => showDrawer()}>Donate</Button>
                     <Drawer title="Donate" placement="right" onClose={onClose} open={open}>
-                        <form id="donationForm">
+                        <form id="donationForm" action='/donation/success'>
                             <p>Enter donation amount below</p><br></br>
                             <p>{project.title}</p>
                             <p>Funding Gloal: {project.fundingGoal}</p>
                             <p>Only ${project.fundingGoal-project.donations} more to meet the goal! </p>
-                            <label for = "dollarAmount">$ </label>
-                            <input type="number" name="dollarAmount" id="dollarAmountInput" required/>
-                            <button type="submit" onClick={()=>handlePayment()}>Submit Payment Request</button>
+                            <label htmlFor = "dollarAmount">$ </label>
+                            <input type="text" name="dollarAmount" id="dollarAmountInput" required pattern="^[1-9]\d*(\.\d+)?$"/>
+                            <p>*positive number only</p>
+                            <Button htmlType="submit" type="primary" onClick={()=>handlePayment()}>Submit Payment Request</Button>
                             {
                                 showNotification ? <p>Submitted!</p> : null
                             }
+                            <input type="text" name="projectTitle" id="projectTitle" defaultValue={project.title} style={{visibility:"hidden"}} />
                         </form>
                         
                     </Drawer>
