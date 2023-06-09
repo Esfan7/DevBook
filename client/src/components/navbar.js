@@ -36,6 +36,10 @@ const App = () => {
       console.log('click ', e);
       setCurrent(e.key);
     };
-    return <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />;
-  };
+    return ( 
+        <div style={{height:'100vh', backgroundColor:'rgb(119, 124, 124)'}}>
+            <Menu style={{backgroundColor:'rgb(119, 124, 124)'}} onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />;
+        </div>
+    );
+};
   export default App;
