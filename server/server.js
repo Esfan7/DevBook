@@ -7,6 +7,64 @@ const mongoose = require('mongoose');
 const projectRoutes = require("./routes/projectRoutes")
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const { graphqlHTTP } = require('express-graphql');
+const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLList } = require('graphql');
+const mongoose = require('mongoose');
+const User = require('./models/User');
+
+const UserType = new GraphQLObjectType({
+    name: 'User',
+    fields: {
+      id: { type: GraphQLString },
+      name: { type: GraphQLString },
+      // ... add other fields as needed
+    },
+  });
+  
+  const schema = new GraphQLSchema({
+    query: new GraphQLObjectType({
+      name: 'Query',
+      fields: {
+        searchUsers: {
+          type: new GraphQLList(UserType),
+          args: {
+            keyword: { type: GraphQLString },
+          },
+          resolve: async (parent, args) => {
+            // Perform the search in MongoDB based on the provided keyword
+            const users = await User.find({ name: { $regex: args.keyword, $options: 'i' } });
+            return users;
+          },
+        },
+      },
+    }),
+  });
+
+
+  app.post('/api/signup', async (req, res) => {
+    try {
+      const { username, password } = req.body;
+  
+      // Check if the user already exists
+      const existingUser = await User.findOne({ username });
+      if (existingUser) {
+        return res.status(409).json({ message: 'Username already exists' });
+      }
+  
+      // Create a new user
+      const newUser = new User({
+        username,
+        password: await bcrypt.hash(password, 10) // Hash the password
+      });
+      await newUser.save();
+  
+      res.status(201).json({ message: 'User created successfully' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'An error occurred' });
+    }
+  });
+
 
 app.post('/api/login', async (req, res) => {
     try {
@@ -69,6 +127,14 @@ app.use(express.static('public'))
 
 async function main(){
     await mongoose.connect('mongodb+srv://eafanbeh:Gencoupe20t@cluster0.s9qly3h.mongodb.net/?retryWrites=true&w=majority')
+    app.use('/graphql', graphqlHTTP({
+        schema: schema,
+        graphiql: true, // Enables the GraphiQL interface for testing
+      }));
+      
+      app.listen(PORT, () => {
+        console.log(`Server started on port ${PORT}`);
+      });
 }
 
 main().catch(err=> console.log(err))
