@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-
+import { Card, Space } from 'antd';
 
 export default function ProfilePage(){
 
@@ -61,16 +61,20 @@ export default function ProfilePage(){
         </div>
         <div style={{...projectContainerStyle}}>
             <div style={{...leftStyle}}>
+                <Space>
                 {
                     projects.map(p => {
-                        return <div>
-                            <h4>{p.title}</h4> 
+                        return   <Card title={p.title} extra={<a href="#">See Details</a>} style={{ width: 300 }}>
+                            
                             <p>{p.description}</p>
                             <p>Goal: $ {p.fundingGoal}</p>
                             <p>completion: {p.status}</p>
-                        </div>
+                        </Card>
+                        
+                
                     })
                 }
+                </Space>
             </div>
             <div style={{...rightStyle}}>
                 list of messages

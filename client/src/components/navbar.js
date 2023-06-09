@@ -2,6 +2,7 @@ import React from 'react';
 import { CodeOutlined, LoginOutlined, UserOutlined, MailOutlined, SearchOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 const items = [
     {
       label: 'DevBook',
@@ -15,7 +16,7 @@ const items = [
     },
     {
         label: 'Profile',
-        key: 'profile',
+        key: '/profile',
         icon: <UserOutlined />,
     },
     {
@@ -32,8 +33,10 @@ const items = [
 
 const App = () => {
     const [current, setCurrent] = useState('index');
+    //const navigate = useNavigate();
     const onClick = (e) => {
       console.log('click ', e);
+       // navigate(e.key)
       setCurrent(e.key);
     };
     return ( 
