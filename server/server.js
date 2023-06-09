@@ -6,6 +6,7 @@ const PORT = 3001;
 const mongoose = require('mongoose');
 const projectRoutes = require("./routes/projectRoutes");
 const donationRoutes = require("./routes/donationRoutes");
+const profileRoutes = require("./routes/profileRoutes");
 
 require('dotenv').config();
 
@@ -34,7 +35,7 @@ app.get('/', (req, res) => {
 
 app.use("/api/project", projectRoutes)
 app.use("/api/donate", donationRoutes)
-
+app.use("/api/profile", profileRoutes)
 
 
 
