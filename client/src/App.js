@@ -1,25 +1,75 @@
-import logo from './logo.svg';
-import './App.css';
+// import React from 'react';
+// import AppContainer from './components/AppContainer';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+// const App = () => {
 
-export default App;
+// return <AppContainer />;
+
+// }
+
+// export default App;
+
+import React from 'react';
+import {Link} from 'react-router-dom';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
+import './index.css';
+import './normalize.css'
+import ProfilePage from './components/pages/ProfilePage';
+import ProjectPage from './components/pages/ProjectPage';
+import testProjects from './testData';
+import DonationSuccessPage from './components/pages/DonationSuccessPage';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+
+import {
+    createBrowserRouter,
+    RouterProvider,
+  } from "react-router-dom";
+
+
+  
+
+
+
+const client = new ApolloClient({
+    uri: '/graphql',
+    cache: new InMemoryCache(),
+  });
+ 
+   
+ const App = () => {
+    const router = createBrowserRouter([
+        {
+          path: "/",
+          element: <div>Placeholder for homepage <Link to="/profile">Profile Page</Link></div>,
+        },
+        {
+            path: "/profile",
+            element: <ProfilePage/>,
+          },
+          {
+            path: "/project/:projectId",
+            element: <ProjectPage projects={testProjects} />
+          },
+          {
+            path: "/donation/success?:dollarAmount&:projectTitle",
+            element: <DonationSuccessPage />
+          },
+          {
+            path: "/donation/success",
+            element: <DonationSuccessPage />
+          }
+      ]);
+    return (
+        <ApolloProvider client={client}>
+            <Navbar />
+                <RouterProvider router={router}>
+                </RouterProvider>
+            <Footer />
+        </ApolloProvider>
+    );
+
+ }; 
+  
+export default  App;
