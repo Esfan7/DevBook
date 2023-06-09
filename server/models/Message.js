@@ -1,4 +1,6 @@
 const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
+
 
 function dateFormat(timestamp) {
     return new Date(timestamp).toLocaleString();
@@ -15,11 +17,11 @@ const messageSchema = Schema({
       },
     sender:{
         type:String,
-        maxlength: 20
+        maxlength: 100
     },
     receiver:{
         type: String,
-        maxlength: 200
+        maxlength: 100
     },
     message:{
         type: String,

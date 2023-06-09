@@ -1,4 +1,9 @@
 const {Schema, model} = require('mongoose');
+const mongoose = require('mongoose');
+
+function dateFormat(timestamp) {
+    return new Date(timestamp).toLocaleString();
+  }
 
 const userSchema = Schema({
     _id: {
@@ -9,13 +14,14 @@ const userSchema = Schema({
         type: Date,
         default: Date.now,
         get: (timestamp) => dateFormat(timestamp),
+        required: true
       },
     username: {
         type: String,
         unique: true,
         required: true,
         trim: true,
-        maxlength: 20
+        maxlength: 100
     },
     email: {
         type: String,
@@ -23,15 +29,15 @@ const userSchema = Schema({
         unique: true,
         match: [/.+@.+\..+/]
     },
-    password: {
-        type: String,
-        required: true,
-        unique: false,
-        match: [/[A-Za-z\d]{8}/]
-    },
+    // password: {
+    //     type: String,
+    //     required: true,
+    //     unique: false,
+    //     match: [/[A-Za-z\d]{8}/]
+    // },
     description:{
         type: String,
-        maxlength: 100
+        maxlength: 500
     },
     picture: {
         type: String

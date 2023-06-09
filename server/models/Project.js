@@ -1,4 +1,11 @@
 const {Schema, model} = require('mongoose');
+const mongoose = require('mongoose');
+
+
+
+function dateFormat(timestamp) {
+    return new Date(timestamp).toLocaleString();
+  }
 
 const milestoneSchema = Schema({
     _id: {
@@ -6,11 +13,13 @@ const milestoneSchema = Schema({
         default: () => new mongoose.Types.ObjectId()
     },
     date: {
-        type: Date
+        type: Date,
+        required: true
     },
     description: {
         type: String,
-        maxlength: 100
+        maxlength: 100,
+        required: true
     },
     status: {
         type: String,
@@ -34,6 +43,7 @@ const projectSchema = Schema({
         type: Date,
         default: Date.now,
         get: (timestamp) => dateFormat(timestamp),
+        required: true
       },
     ownerUsername: {
         type: String,
@@ -48,10 +58,12 @@ const projectSchema = Schema({
     },
     description:{
         type:String,
-        maxlength: 300
+        maxlength: 500,
+        required: true
     },
     fundingGoal:{
-        type: Number
+        type: Number,
+        required: true
     },
     status: {
         type: String,

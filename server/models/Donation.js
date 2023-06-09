@@ -1,4 +1,11 @@
 const {Schema, model} = require('mongoose');
+const mongoose = require('mongoose');
+
+
+
+function dateFormat(timestamp) {
+    return new Date(timestamp).toLocaleString();
+  }
 
 const donationSchema = Schema({
     _id: {
@@ -9,6 +16,7 @@ const donationSchema = Schema({
         type: Date,
         default: Date.now,
         get: (timestamp) => dateFormat(timestamp),
+        required: true
       },  
     amount: {
         type: Number,
@@ -16,11 +24,12 @@ const donationSchema = Schema({
     },
     username:{
         type:String,
-        maxlength: 20
+        maxlength: 100,
+        required: true
     },
     comment:{
         type: String,
-        maxlength: 40
+        maxlength: 500
     },
    projectId:{
         type: String,

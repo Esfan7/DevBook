@@ -4,8 +4,18 @@ const projects = require('./projectData');
 const donations = require('./donationData');
 const comments = require('./commentData');
 
-const {User, Comment, Donation, Project, Message} = require('../models');
+const User = require('../models/User');
+const Comment = require('../models/Comment');
+const Donation = require('../models/Donation');
+const Project = require('../models/Project');
+const Message = require('../models/Message');
 const connection = require ('../config/connection');
+
+
+connection.dropDatabase('devbook', (err) => {
+    if (err) console.log(err);
+    console.log("Database dropped");
+  });
 
 connection.on('error', (error) => error);
 
