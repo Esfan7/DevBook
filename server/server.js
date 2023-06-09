@@ -11,7 +11,17 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { graphqlHTTP } = require('express-graphql');
 const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLList } = require('graphql');
-const mongoose = require('mongoose');
+
+require('dotenv').config();
+app.use(express.json());
+//translate body for post requests
+app.use(express.urlencoded({ extended: true }));
+app.use(cors())
+
+//return all files in public folder
+app.use(express.static('public'))
+
+/*
 const User = require('./models/User');
 
 const UserType = new GraphQLObjectType({
@@ -22,7 +32,7 @@ const UserType = new GraphQLObjectType({
       // ... add other fields as needed
     },
   });
-  
+
   const schema = new GraphQLSchema({
     query: new GraphQLObjectType({
       name: 'Query',
@@ -42,7 +52,7 @@ const UserType = new GraphQLObjectType({
     }),
   });
 
-
+  */
   app.post('/api/signup', async (req, res) => {
     try {
       const { username, password } = req.body;
@@ -96,9 +106,11 @@ app.post('/api/login', async (req, res) => {
   });
 
   // Require authentication for protected routes
-app.use('/api/project', authenticateToken, projectRoutes);
-
+app.use('/api/project', projectRoutes);
+// authenticateToken
 function authenticateToken(req, res, next) {
+  
+
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
   
@@ -117,20 +129,13 @@ function authenticateToken(req, res, next) {
   }
   
 
-require('dotenv').config();
-app.use(express.json());
-//translate body for post requests
-app.use(express.urlencoded({ extended: true }));
-app.use(cors())
 
-//return all files in public folder
-app.use(express.static('public'))
-
+/*
 app.use('/graphql', graphqlHTTP({
     schema: schema,
     graphiql: true, // Enables the GraphiQL interface for testing
   }));
-
+*/
 async function main(){
     await mongoose.connect(process.env.MONGO_CONNECT)
 }
