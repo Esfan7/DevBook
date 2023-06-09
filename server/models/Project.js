@@ -1,21 +1,31 @@
 const {Schema, model} = require('mongoose');
 
+
+
+
+
 const projectSchema = Schema({
    title: {
     type: String
    },
     description:{
         type:String,
-        maxlength: 100
+        maxlength: 300
     },
-    goal:{
+    fundingGoal:{
         type: Number
     },
-    picture:{
+    status: {
         type: String
     },
-    completion:{
-        type: String
+    user_id: {
+        type: Schema.Types.ObjectId 
+    }, 
+    comments: {
+        type: Array
+    },
+    milestones: {
+        type: Array
     }
 
 

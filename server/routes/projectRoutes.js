@@ -24,21 +24,62 @@ router.get("/", async (req, res)=>{
 
 
 
+
 router.post("/", async (req, res)=>{
 
     try{
         const result = await Project.create({
             title: req.body.title,
             description: req.body.description,
-            goal: parseFloat(req.body.goal),
-            picture: req.body.picture,
-            completion: req.body.completion,
+            fundingGoal: parseFloat(req.body.fundingGoal),
+            status: req.body.status,
+            user_id: new ObjectId(req.body.user_id)
         });
         res.json(result)
 
     } catch(err){
         console.log(err)
     }
+})
+
+//add milestone
+
+router.put("/:id/milestone", async (req, res)=>{
+
+  try{
+   
+      const result = await Project.findByIdAndUpdate(req.params.id, {
+         $push: {milestones: {
+          date: req.body.date,
+          description: req.body.description,
+          status: req.body.status,
+         }}
+      });
+      res.json(result)
+
+  } catch(err){
+      console.log(err)
+  }
+})
+
+
+//add comments
+router.put("/:id/comment", async (req, res)=>{
+
+  try{
+
+      const result = await Project.findByIdAndUpdate(req.params.id, {
+         $push: {comments: {
+          timestamp: req.body.timestamp,
+          username: req.body.username,
+          content: req.body.content,
+         }}
+      });
+      res.json(result)
+
+  } catch(err){
+      console.log(err)
+  }
 })
 
 
