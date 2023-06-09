@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 export default function ProfilePage(){
 
     const [projects, setProjects] = useState([]);
+    const [profile, setProfile] = useState([]);
 
     const fetchProject = async () =>{
 
@@ -13,8 +14,17 @@ export default function ProfilePage(){
         setProjects(data);
     }
 
+    const fetchProfile = async () =>{
+
+        const result = await fetch('http://localhost:3001/api/profile/64829286acd4c7c0575a8818');
+        const data = await result.json();
+        console.log("profile:",data)
+        setProfile(data);
+    }
+
     useEffect( () =>{
-        fetchProject()
+        fetchProject();
+        fetchProfile();
     }, [])
 
     const containerStyle = {
@@ -39,10 +49,13 @@ export default function ProfilePage(){
 
     return <div>
 
-        <div>
-            [user profile]
-        </div>
+       
         <div style={{...containerStyle}}>
+        {profile && <div>
+            <img src={profile.picture} />
+            <h2>{profile.name}</h2>
+            <p>{profile.description}</p>
+        </div>}
         <div style={{...authorStyle}}>
             Author description....
         </div>
@@ -53,8 +66,8 @@ export default function ProfilePage(){
                         return <div>
                             <h4>{p.title}</h4> 
                             <p>{p.description}</p>
-                            <p>Goal: $ {p.goal}</p>
-                            <p>completion: {p.completion}</p>
+                            <p>Goal: $ {p.fundingGoal}</p>
+                            <p>completion: {p.status}</p>
                         </div>
                     })
                 }
