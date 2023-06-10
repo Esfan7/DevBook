@@ -1,4 +1,4 @@
-import "./index.css";
+import "./searchBar.css";
 import { AutoComplete } from "antd";
 
     const defaultOptions = [{
