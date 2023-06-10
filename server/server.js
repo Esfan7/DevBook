@@ -19,8 +19,8 @@ const server = new ApolloServer({
 
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const { graphqlHTTP } = require('express-graphql');
-const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLList } = require('graphql');
+// const { graphqlHTTP } = require('express-graphql');
+// const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLList } = require('graphql');
 
 require('dotenv').config();
 
