@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 const path = require('path');
 const fs = require('fs');
 
-const Profile = require('../models/Profile')
+const Profile = require('../models/User')
 const ObjectId = require('mongodb').ObjectId;
 const multer  = require('multer')
 

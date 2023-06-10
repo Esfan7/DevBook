@@ -1,13 +1,11 @@
-const {Schema, model} = require('mongoose');
+const { Schema, model } = require('mongoose');
 const mongoose = require('mongoose');
-
 
 
 function dateFormat(timestamp) {
     return new Date(timestamp).toLocaleString();
   }
-
-const donationSchema = Schema({
+const messageSchema = Schema({
     _id: {
         type: Schema.Types.ObjectId,
         default: () => new mongoose.Types.ObjectId()
@@ -16,23 +14,21 @@ const donationSchema = Schema({
         type: Date,
         default: Date.now,
         get: (timestamp) => dateFormat(timestamp),
-        required: true
-      },  
-    amount: {
-        type: Number,
-        required: true
-    },
-    username:{
+      },
+    sender:{
         type:String,
-        maxlength: 100,
+        maxlength: 100
+    },
+    receiver:{
+        type: String,
+        maxlength: 100
+    },
+    message:{
+        type: String,
         required: true
     },
-    comment:{
-        type: String,
-        maxlength: 500
-    },
-   projectId:{
-        type: String,
+    hasBeenRead: {
+        type: Boolean,
         required: true
     }
 },
@@ -44,6 +40,6 @@ const donationSchema = Schema({
     id: true,
 });
 
-const Donation = model( "Donation", donationSchema);
+const Message = model( "Message", messageSchema);
 
-module.exports = Donation
+module.exports = Message
