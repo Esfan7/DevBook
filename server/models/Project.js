@@ -91,11 +91,13 @@ const projectSchema = Schema({
     id: true,
 });
 
-projectSchema.virtual('donationCount').get(() => {
-    const total = 0;
-    for (i = 0; i< this.donations.length; i++){
-        total = total + this.donations[i].amount
-    };
+projectSchema.virtual('donationCount').get(function() {
+    var total = 0;
+    if(this.donations.length !== 0){
+        for (let i = 0; i< this.donations.length; i++){
+            total = total + this.donations[i].amount
+        };
+    } ;
     return total;
 });
 

@@ -1,6 +1,7 @@
 const projects = 
 [
     {
+        _id: '6484003059041faece332709',
         createdAt: '5/4/2021, 10:53:19 PM',
         ownerUsername: "ckarline",
         title: 'E-Commerce Website',
@@ -8,8 +9,8 @@ const projects =
         and post your item. List the price and other information. You may also buy guitars from other users.`,
         fundingGoal: 1000,
         status: 'Pending Funding',
-        donations: [],
-        comments: [],
+        donations: ['6484003059041faece332700','6484003059041faece332701'],
+        comments: ['6484003059041faece3326fb'],
         milestones: [
             {
                 date: '01/05/2024',
@@ -34,14 +35,15 @@ const projects =
         ],
     },
     {
+        _id: '6484003059041faece33270e',
         createdAt: '5/4/2021, 10:53:19 PM',
         ownerUsername: 'docBrown',
         title: 'Tutoring Exchange',
         description: `With over 4500 tutors available, the Tutoring Exchange provides a forum for tutoring on various college subjects`,
         fundingGoal: 9000,
         status: 'Active',
-        donations: [],
-        comments: [],
+        donations: ['6484003059041faece332702','6484003059041faece332703'],
+        comments: ['6484003059041faece3326f9','6484003059041faece3326fc','6484003059041faece3326fe'],
         milestones: [
             {
                 date: '01/05/2024',
@@ -66,6 +68,7 @@ const projects =
         ],
     },
     {
+        _id: '6484003059041faece332713',
         createdAt: '5/4/2021, 10:53:19 PM',
         ownerUsername: 'danBrown',
         title: 'Tutoring Exchange',
@@ -73,7 +76,7 @@ const projects =
         fundingGoal: 50000,
         status: 'Completed',
         donations: [],
-        comments: [],
+        comments: ['6484003059041faece3326fa','6484003059041faece3326fd'],
         milestones: [
             {
                 date: '01/05/2024',

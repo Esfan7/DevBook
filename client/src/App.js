@@ -63,8 +63,7 @@ const client = new ApolloClient({
       ]);
     return (
         <ApolloProvider client={client}>
-           {/* <Navbar />*/}
-         
+           <Navbar />
                 <RouterProvider router={router}>
                 </RouterProvider>
             <Footer />
