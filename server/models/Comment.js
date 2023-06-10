@@ -30,7 +30,7 @@ const commentSchema = Schema({
     },
    projectId:{
         type: String,
-        required: true
+        // required: true
     }
 },
 {
