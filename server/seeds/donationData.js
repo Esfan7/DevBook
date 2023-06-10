@@ -1,6 +1,7 @@
 
 const donations = [
     {
+        _id: '6484003059041faece332700',
         createdAt: '5/4/2021, 10:53:19 PM',
         amount: 5000,
         username: 'ckarline',
@@ -8,6 +9,7 @@ const donations = [
         projectId: "2"
     },
     {
+        _id: '6484003059041faece332701',
         createdAt: '5/4/2021, 10:53:19 PM',
         amount: 4000,
         username: 'danBrown',
@@ -15,6 +17,7 @@ const donations = [
         projectId: "2"
     },
     {
+        _id: '6484003059041faece332702',
         createdAt: '5/4/2021, 10:53:19 PM',
         amount: 26000,
         username: 'docBrown',
@@ -22,6 +25,7 @@ const donations = [
         projectId: "3"
     },
     {
+        _id: '6484003059041faece332703',
         createdAt: '5/4/2021, 10:53:19 PM',
         amount: 24000,
         username: 'ckarline',

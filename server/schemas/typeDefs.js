@@ -37,7 +37,7 @@ const typeDefs = gql`
       sender: String!
       receiver: String!
       message: String!
-      hasbBeenRead: Boolean!
+      hasBeenRead: Boolean!
     }
 
     type Comment {
@@ -45,7 +45,7 @@ const typeDefs = gql`
       createdAt: String!
       username: String!
       comment: String!
-      projectId: String!
+      projectId: String
     }
 
     type Donation {
@@ -54,7 +54,7 @@ const typeDefs = gql`
       amount: Int!
       username: String!
       comment: String
-      projectId: String!
+      projectId: String
     }
 
     type Query {
@@ -67,6 +67,8 @@ const typeDefs = gql`
       users: [User]
       user(_id: ID!): User
       messages: [Message]
+      messagesSent(sender: String!): [Message]
+      messagesReceived(receiver: String! hasBeenRead: Boolean): [Message]
       message(_id: ID!): Message
     }
 `;

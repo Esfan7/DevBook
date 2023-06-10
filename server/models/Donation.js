@@ -33,7 +33,7 @@ const donationSchema = Schema({
     },
    projectId:{
         type: String,
-        required: true
+        // required: true
     }
 },
 {
