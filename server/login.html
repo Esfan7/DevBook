@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Authentication Example</title>
+</head>
+<body>
+  <h2>Sign Up</h2>
+  <form id="signupForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br>
+    <input type="submit" value="Sign Up">
+  </form>
+
+  <hr>
+
+  <h2>Login</h2>
+  <form id="loginForm">
+    <label for="loginUsername">Username:</label>
+    <input type="text" id="loginUsername" name="username" required><br>
+    <label for="loginPassword">Password:</label>
+    <input type="password" id="loginPassword" name="password" required><br>
+    <input type="submit" value="Login">
+  </form>
+
+  <script>
+    const handleSignup = async (event) => {
+      event.preventDefault();
+
+      const form = event.target;
+      const username = form.username.value;
+      const password = form.password.value;
+
+      try {
+        const response = await fetch('/api/signup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          console.log('Signup successful');
+        } else {
+          console.log(data.message);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const handleLogin = async (event)
+
