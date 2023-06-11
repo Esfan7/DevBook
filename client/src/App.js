@@ -20,6 +20,7 @@ import ProjectPage from './components/pages/ProjectPage';
 import testProjects from './testData';
 import DonationSuccessPage from './components/pages/DonationSuccessPage';
 import Navbar from 'components/Navbar';
+import RecentProjects from './components/RecentProjects';
 import Footer from './components/Footer';
 
 import {
@@ -69,7 +70,7 @@ const client = new ApolloClient({
     return (
         <ApolloProvider client={client}>
            <Navbar />
-
+              <RecentProjects />
                 <RouterProvider router={router}>
                 </RouterProvider>
             <Footer />
