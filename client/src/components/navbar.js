@@ -1,6 +1,6 @@
 import React from 'react';
 import { CodeOutlined, LoginOutlined, UserOutlined, MailOutlined, SearchOutlined } from '@ant-design/icons';
-import { Input, Menu } from 'antd';
+import { Menu } from 'antd';
 import { useState } from 'react';
 import { SearchBar } from '.components/SearchBar';
 import { useNavigate } from 'react-router-dom';
