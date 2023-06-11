@@ -7,7 +7,7 @@ const projects =
         title: 'E-Commerce Website',
         description: `This website is a marketplace for guitars. You can buy or sell your guitars. Create an account
         and post your item. List the price and other information. You may also buy guitars from other users.`,
-        fundingGoal: 1000,
+        fundingGoal: 10000,
         status: 'Pending Funding',
         donations: ['6484003059041faece332700','6484003059041faece332701'],
         comments: ['6484003059041faece3326fb'],
@@ -40,7 +40,7 @@ const projects =
         ownerUsername: 'docBrown',
         title: 'Tutoring Exchange',
         description: `With over 4500 tutors available, the Tutoring Exchange provides a forum for tutoring on various college subjects`,
-        fundingGoal: 9000,
+        fundingGoal: 20000,
         status: 'Active',
         donations: ['6484003059041faece332702','6484003059041faece332703'],
         comments: ['6484003059041faece3326f9','6484003059041faece3326fc','6484003059041faece3326fe'],
