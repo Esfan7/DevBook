@@ -1,19 +1,25 @@
 import "./searchBar.css";
 import { AutoComplete } from "antd";
 
-    const defaultOptions = [{
-        label: "Project One",
-        value: "Project One"
-    },
-    {
-        label: "Project Two",
-        value: "Project Two"
-    },
-    {
-        label: "Project Three",
-        value: "Project Three"
-    }]
-    function SearchBar() {
+
+
+import {useState} from 'react';
+
+
+const defaultOptions = [{
+    label: "Project One",
+    value: "Project One"
+},
+{
+    label: "Project Two",
+    value: "Project Two"
+},
+{
+    label: "Project Three",
+    value: "Project Three"
+}];
+
+function SearchBar() {
     const [options, setOptions] = useState(defaultOptions)
 
     const search = (searchedText) => {

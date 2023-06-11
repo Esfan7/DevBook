@@ -19,13 +19,14 @@ import ProfilePage from './components/pages/ProfilePage';
 import ProjectPage from './components/pages/ProjectPage';
 import testProjects from './testData';
 import DonationSuccessPage from './components/pages/DonationSuccessPage';
-import Navbar from './components/Navbar';
+import Navbar from 'components/Navbar';
 import Footer from './components/Footer';
 
 import {
     createBrowserRouter,
     RouterProvider,
   } from "react-router-dom";
+import CreateProject from './components/pages/CreateProject';
 
 
   
@@ -51,6 +52,10 @@ const client = new ApolloClient({
           {
             path: "/project/:projectId",
             element: <ProjectPage projects={testProjects} />
+          },
+          {
+            path: "/create-project",
+            element: <CreateProject />
           },
           {
             path: "/donation/success?:dollarAmount&:projectTitle",
