@@ -15,7 +15,7 @@ const sorted = projects.sort((a, b) =>
     return (
         <div>
             {sortedProjects.map((project) => (
-                <div key={project._id}>
+                <div key={project._id} className="project-card">
                     <h2>{project.title}</h2>
                     <p>{project.description}</p>
                     <p>Status: {project.status}</p>
