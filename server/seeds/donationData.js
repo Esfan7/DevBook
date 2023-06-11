@@ -6,7 +6,7 @@ const donations = [
         amount: 5000,
         username: 'ckarline',
         comment: 'i believe in the project',
-        projectId: "2"
+        projectId: "6484003059041faece332709"
     },
     {
         _id: '6484003059041faece332701',
@@ -14,7 +14,7 @@ const donations = [
         amount: 4000,
         username: 'danBrown',
         comment: 'i believe in the project also',
-        projectId: "2"
+        projectId: "6484003059041faece332709"
     },
     {
         _id: '6484003059041faece332702',
@@ -22,7 +22,7 @@ const donations = [
         amount: 26000,
         username: 'docBrown',
         comment: 'please finish the project on time',
-        projectId: "3"
+        projectId: "6484003059041faece33270e"
     },
     {
         _id: '6484003059041faece332703',
@@ -30,7 +30,7 @@ const donations = [
         amount: 24000,
         username: 'ckarline',
         comment: 'please finish the project on time, or else...',
-        projectId: "3"
+        projectId: "6484003059041faece33270e"
     },
 ];
 
