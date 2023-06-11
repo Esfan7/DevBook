@@ -29,6 +29,7 @@ const messageSchema = Schema({
     },
     hasBeenRead: {
         type: Boolean,
+        default: false,
         required: true
     }
 },
