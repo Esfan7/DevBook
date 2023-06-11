@@ -70,30 +70,70 @@ export const QUERY_SINGLE_PROJECT = gql`
       donationCount
     }
   }
-
-
 `;
-
-export const QUERY_COMMENTS = gql`
-  query comments {
-    comments {
+export const QUERY_MESSAGES = gql`
+  query messages {
+    messages {
       _id
       createdAt
-      username
-      comment
-      projectId
+      sender
+      receiver
+      message
+      hasBeenRead
     }
   }
 `;
 
-export const QUERY_SINGLE_COMMENT = gql`
-query Query($id: ID) {
-  comment(_id: $id) {
-    _id
-    createdAt
-    username
-    comment
-    projectId
+export const QUERY_MESSAGES_RECEIVED = gql`
+  query messagesReceived($receiver: String!, $hasBeenRead: Boolean) {
+    messagesReceived(receiver: $receiver, hasBeenRead: $hasBeenRead) {
+      _id
+      createdAt
+      sender
+      receiver
+      message
+      hasBeenRead
+    }
   }
-}
 `;
+
+export const QUERY_MESSAGES_SENT = gql`
+  query messagesSent($sender: String!) {
+    messagesSent(sender: $sender) {
+      _id
+      createdAt
+      sender
+      receiver
+      message
+      hasBeenRead
+    }
+  }
+`;
+
+export const QUERY_USER = gql`
+  query user($id: ID!) {
+    user(_id: $id) {
+      _id
+      createdAt
+      username
+      email
+      description
+      picture
+    }
+  }
+`;
+
+export const QUERY_USERS = gql`
+  query users {
+    users {
+      _id
+      createdAt
+      username
+      email
+      description
+      picture
+    }
+  }
+
+`;
+
