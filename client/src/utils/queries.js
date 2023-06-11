@@ -1,59 +1,99 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_PROJECTS = gql`
-  query getProjects {
+  query projects{
     projects {
       _id
+      createdAt
+      ownerUsername
       title
       description
       fundingGoal
-      donations
       status
+      donations {
+        _id
+        createdAt
+        amount
+        username
+        comment
+        projectId
+      }
+      comments {
+        _id
+        createdAt
+        username
+        comment
+        projectId
+      }
       milestones {
+        _id
         date
         description
         status
       }
-      comments {
-        _id
-        timestamp
-        username
-        content
-      }
+      donationCount
     }
   }
 `;
 
 export const QUERY_SINGLE_PROJECT = gql`
-  query getSingleProject($projectId: _id) {
-    project(projectId: $projectId) {
+  query project($id: ID) {
+    project(_id: $id) {
       _id
+      createdAt
+      ownerUsername
       title
       description
       fundingGoal
-      donations
       status
+      donations {
+        _id
+        createdAt
+        amount
+        username
+        comment
+        projectId
+      }
+      comments {
+        _id
+        createdAt
+        username
+        comment
+        projectId
+      }
       milestones {
+        _id
         date
         description
         status
       }
-      comments {
-        _id
-        timestamp
-        username
-        content
-      }
+      donationCount
+    }
   }
+
+
 `;
 
 export const QUERY_COMMENTS = gql`
-  query getComments {
+  query comments {
     comments {
       _id
-      timestamp
+      createdAt
       username
-      content
+      comment
+      projectId
     }
   }
+`;
+
+export const QUERY_SINGLE_COMMENT = gql`
+query Query($id: ID) {
+  comment(_id: $id) {
+    _id
+    createdAt
+    username
+    comment
+    projectId
+  }
+}
 `;

@@ -29,9 +29,9 @@ const Comments = ({comments, projectId}) => {
                         <List.Item>
                             <List.Item.Meta
                             title={`User: ${item.username}`}
-                            description={`Content: ${item.content}`}
+                            description={`Content: ${item.comment}`}
                             />
-                            <p>TimeStamp: {item.timestamp}</p>
+                            <p>TimeStamp: {item.createdAt}</p>
                         </List.Item>
                     )}
                 />
