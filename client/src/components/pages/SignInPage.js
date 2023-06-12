@@ -6,9 +6,9 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    // Perform login logic here, e.g., send login request to server
+    // Perform login logic here
     console.log('Logging in with username:', username, 'and password:', password);
-    // Reset the form
+
     setUsername('');
     setPassword('');
   };
@@ -51,7 +51,7 @@ const SignupForm = () => {
   const handleSignup = () => {
     // Perform signup logic here
     console.log('Signing up with username:', username, 'and password:', password);
-    // Reset the form
+
     setUsername('');
     setPassword('');
     setConfirmPassword('');
