@@ -1,7 +1,9 @@
 
-
+import { useState } from "react";
 export default function CreateProject(){
     const [title, setTitle] = useState();
+    const [description, setDescription] = useState();
+    const [fundingGoal, setFundingGoal] = useState();
 
 
 
@@ -21,10 +23,15 @@ export default function CreateProject(){
             },
             body: JSON.stringify({
                 title: title,
-                description: ""
+                description: description,
+                fundingGoal: fundingGoal
             }), // body d
         })
         console.log(result)
+
+        setTitle("")
+        setDescription("")
+        setFundingGoal("")
     }
     return <div>
 
@@ -34,14 +41,15 @@ export default function CreateProject(){
                 <input type="text" value={title} onChange={e=> setTitle(e.target.value)} name="title"/>
             </fieldset>
             <fieldset>
-                <label>Title</label>
-                <input name="title"/>
+                <label>Description</label>
+                <input name="description" value={description} onChange={e=> setDescription(e.target.value)}  />
             </fieldset>
             <fieldset>
-                <label>Title</label>
-                <input name="title"/>
+                <label>Funding Goal</label>
+                <input name="fundingGoal" value={fundingGoal} onChange={e=> setFundingGoal(e.target.value)} />
             </fieldset>
             <fieldset>
+            
       
                 <input type="submit" value="create project"/>
             </fieldset>

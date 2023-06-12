@@ -21,19 +21,43 @@ router.get("/", async (req, res)=>{
 
 })
 
+router.get("/user/:id", async (req, res)=>{
+
+  try{
+      const result = await Project.find({
+        ownerUsername: req.params.id
+      });
+  
+      res.json(result)
+
+  } catch(err){
+      console.log(err)
+  }
+
+})
+
+
 
 
 
 
 router.post("/", async (req, res)=>{
 
+  console.log(
+    "create", req.body
+  )
+
+    //sessions 
+    req.session = "64835f209a40a53888f2b415";
+
     try{
         const result = await Project.create({
             title: req.body.title,
             description: req.body.description,
             fundingGoal: parseFloat(req.body.fundingGoal),
-            status: req.body.status,
-            user_id: new ObjectId(req.body.user_id)
+            ownerUsername: 'MyUser',
+            status: "pending",
+            user_id: new ObjectId(req.session)
         });
         res.json(result)
 

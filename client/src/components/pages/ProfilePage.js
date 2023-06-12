@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react"
-import { Card, Space } from 'antd';
+import { Button, Card, Space } from 'antd';
+import { useNavigate } from "react-router-dom";
 
 export default function ProfilePage(){
 
     const [projects, setProjects] = useState([]);
     const [profile, setProfile] = useState([]);
+    const[message, setMessage] = useState([]);
+    const navigate = useNavigate();
 
     const fetchProject = async () =>{
 
-        const result = await fetch('http://localhost:3001/api/project');
+        const result = await fetch('http://localhost:3001/api/project/user/MyUser');
         const data = await result.json();
-        console.log(data)
+        console.log("check?",data)
         setProjects(data);
     }
 
@@ -22,9 +25,19 @@ export default function ProfilePage(){
         setProfile(data);
     }
 
+    const fetchMessage = async () =>{
+
+        const result = await fetch('http://localhost:3001/api/message/user/MyUser');
+        const data = await result.json();
+        console.log("message:",data)
+        setMessage(data);
+
+    }
+
     useEffect( () =>{
         fetchProject();
         fetchProfile();
+        fetchMessage();
     }, [])
 
     const containerStyle = {
@@ -41,10 +54,15 @@ export default function ProfilePage(){
         marginTop: "20px"
     }
     const leftStyle = {
-        width: "60%"
+        width: "80%",
+        gap: "20px"
     }
     const rightStyle = {
-        width: "40%"
+        width: "20%",
+        padding: "10px",
+        display: "flex",
+        gap: "10px",
+        flexDirection: "column"
     }
 
     return <div>
@@ -59,12 +77,18 @@ export default function ProfilePage(){
         <div style={{...authorStyle}}>
             Author description....
         </div>
+        <br/>
+        <div>
+            <Button onClick={()=>navigate("/create-project")}>Create Project</Button>
+        </div>
         <div style={{...projectContainerStyle}}>
             <div style={{...leftStyle}}>
-                <Space>
+                <Space className="mySpace" size={"medium"} style={{width: "100%"}}>
                 {
                     projects.map(p => {
-                        return   <Card title={p.title} extra={<a href="#">See Details</a>} style={{ width: 300 }}>
+                        return   <Card title={p.title}
+                       
+                         extra={<a href="#">See Details</a>} >
                             
                             <p>{p.description}</p>
                             <p>Goal: $ {p.fundingGoal}</p>
@@ -74,10 +98,24 @@ export default function ProfilePage(){
                 
                     })
                 }
+
                 </Space>
             </div>
             <div style={{...rightStyle}}>
-                list of messages
+                <h4>Messages </h4>
+                <Button onClick={()=>navigate("/messenger")}>Send Messages</Button>
+                {
+                    message.map(m => {
+                        
+                        return   <Card style={{ width: 300 }}>
+                        <p>{m.sender}</p>
+                        <p>{m.message}</p>
+                       
+                      </Card>
+                        
+                
+                    })
+                }
             </div>
 
         </div>
