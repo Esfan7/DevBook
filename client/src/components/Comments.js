@@ -31,8 +31,8 @@ const Comments = ({comments, projectId, projectData}) => {
     }
     
     return (
-        <div id="commentsContainer">
-            <p>Comments</p>
+        <div>
+            <p className="font-medium text-lg border-b mt-2 mb-2 pt-2 pb-2">Comments</p>
             <div id="commentList">
                 <List 
                     itemLayout = 'horizontal'
@@ -43,13 +43,13 @@ const Comments = ({comments, projectId, projectData}) => {
                             title={`User: ${item.username}`}
                             description={`Content: ${item.comment}`}
                             />
-                            <p>TimeStamp: {item.createdAt}</p>
+                            {/* <p>TimeStamp: {item.createdAt}</p> */}
                         </List.Item>
                     )}
                 />
             </div>
             <div id="commentForm">
-                <p>User</p>
+                <p className="font-medium text-lg mb-2 border-t pt-2">Add Comment</p>
                 <TextArea
                     id='commentInputForm'
                     showCount
@@ -62,7 +62,7 @@ const Comments = ({comments, projectId, projectData}) => {
                     placeholder="Comment here"
                     value={commentText}
                 />
-                <Button type="primary" onClick={()=>{handleCommentSubmit(projectId)}}>Submit</Button>
+                <Button className="border-2 rounded-2xl bg-blue-500 m-5 font-medium text-white" onClick={()=>{handleCommentSubmit(projectId)}}>Submit</Button>
             </div>
 
         </div>

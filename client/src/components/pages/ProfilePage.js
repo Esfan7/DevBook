@@ -64,7 +64,7 @@ export default function ProfilePage(){
                 <Space>
                 {
                     projects.map(p => {
-                        return   <Card title={p.title} extra={<a href="#">See Details</a>} style={{ width: 300 }}>
+                        return   <Card key={p._id} title={p.title} extra={<a href={`/project/${p._id}`}>See Details</a>} style={{ width: 300 }}>
                             
                             <p>{p.description}</p>
                             <p>Goal: $ {p.fundingGoal}</p>
