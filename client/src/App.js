@@ -11,7 +11,7 @@ import ProjectPage from './components/pages/ProjectPage';
 import testProjects from './testData';
 import DonationSuccessPage from './components/pages/DonationSuccessPage';
 import Navbar2 from './components/Navbar2';
-import Footer from './components/Footer';
+import Footer2 from './components/Footer2';
 
 import {
     createBrowserRouter,
@@ -80,7 +80,7 @@ const client = new ApolloClient({
            <Navbar2 />
                 <RouterProvider router={router}>
                 </RouterProvider>
-            <Footer />
+            <Footer2 />
         </ApolloProvider>
     );
 
