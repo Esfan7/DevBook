@@ -41,10 +41,13 @@ const Navbar = () => {
       setCurrent(e.key);
     };
     return ( 
+        // <div style={{height:'100vh', backgroundColor:'rgb(119, 124, 124)'}}>
+        //     <Menu style={{backgroundColor:'rgb(119, 124, 124)'}} onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />;
+        // </div>
+        // <div className='w-full m-2 border-b-8 py-1 my-4' >
+        // <Menu  onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
         <div style={{height:'10vh', backgroundColor:'rgb(119, 124, 124)'}}>
             <Menu style={{backgroundColor:'rgb(119, 124, 124)'}} onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />;
-                
-        
         </div>
     );
 };

@@ -86,9 +86,10 @@ export default function ProfilePage(){
                 <Space className="mySpace" size={"medium"} style={{width: "100%"}}>
                 {
                     projects.map(p => {
+//                         return   <Card key={p._id} title={p.title} extra={<a href={`/project/${p._id}`}>See Details</a>} style={{ width: 300 }}>
                         return   <Card title={p.title}
                        
-                         extra={<a href="#">See Details</a>} >
+                         extra={<a href={`/project/${p._id}`}>See Details</a>} >
                             
                             <p>{p.description}</p>
                             <p>Goal: $ {p.fundingGoal}</p>
