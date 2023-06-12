@@ -48,6 +48,7 @@ const projectSchema = Schema({
     ownerUsername: {
         type: String,
         required: true,
+        unique: true
     },
     title: {
         type: String,

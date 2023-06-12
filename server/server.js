@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const projectRoutes = require("./routes/projectRoutes")
 const donationRoutes = require("./routes/donationRoutes");
 const profileRoutes = require("./routes/profileRoutes");
+const messageRoutes = require("./routes/messageRoutes");
 
 const db = require('./config/connection');
 const { typeDefs, resolvers } = require('./schemas');
@@ -163,6 +164,7 @@ app.get('/', (req, res) => {
 app.use("/api/project", projectRoutes)
 app.use("/api/donate", donationRoutes)
 app.use("/api/profile", profileRoutes)
+app.use("/api/message", messageRoutes)
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
