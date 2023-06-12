@@ -2,6 +2,7 @@ import React from 'react';
 import { CodeOutlined, LoginOutlined, UserOutlined, MailOutlined, SearchOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import { useState } from 'react';
+import  SearchBar   from './SearchBar';
 import { useNavigate } from 'react-router-dom';
 const items = [
     {
@@ -10,7 +11,7 @@ const items = [
       icon: <CodeOutlined />,
     },
     {
-        label: 'Search Bar Placeholder',
+        label: <SearchBar />,
         key: 'search',
         icon: <SearchOutlined />
     },
@@ -31,7 +32,7 @@ const items = [
     }
 ];
 
-const App = () => {
+const Navbar = () => {
     const [current, setCurrent] = useState('index');
     //const navigate = useNavigate();
     const onClick = (e) => {
@@ -43,9 +44,11 @@ const App = () => {
         // <div style={{height:'100vh', backgroundColor:'rgb(119, 124, 124)'}}>
         //     <Menu style={{backgroundColor:'rgb(119, 124, 124)'}} onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />;
         // </div>
-        <div className='w-full m-2 border-b-8 py-1 my-4' >
-            <Menu  onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
+        // <div className='w-full m-2 border-b-8 py-1 my-4' >
+        // <Menu  onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
+        <div style={{height:'10vh', backgroundColor:'rgb(119, 124, 124)'}}>
+            <Menu style={{backgroundColor:'rgb(119, 124, 124)'}} onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />;
         </div>
     );
 };
-  export default App;
+  export default Navbar;

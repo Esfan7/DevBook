@@ -7,17 +7,18 @@ import './index.css';
 import './normalize.css'
 import ProfilePage from './components/pages/ProfilePage';
 import ProjectPage from './components/pages/ProjectPage';
-// import testProjects from './testData';
+import testProjects from './testData';
 import DonationSuccessPage from './components/pages/DonationSuccessPage';
-import Navbar from './components/Navbar';
+import Navbar from 'components/Navbar';
 import Footer from './components/Footer';
 
 import {
     createBrowserRouter,
     RouterProvider,
   } from "react-router-dom";
+import CreateProject from './components/pages/CreateProject';
 
-const rootUrl = 'http://localhost:3001'
+
   
 
 const httpLink = createHttpLink({
@@ -45,9 +46,21 @@ const client = new ApolloClient({
             element: <ProfilePage/>,
           },
           {
+            path: "/project",
+            element: <ProjectPage projects={testProjects} />
+          },
+          {
             path: "/project/:projectId",
             element: <ProjectPage />
             // element: <ProjectPage projects={testProjects} />
+          },
+          {
+            path: "/create-project",
+            element: <CreateProject />
+          },
+          {
+            path: "/messenger",
+            element: <CreateMessage />
           },
           {
             path: "/donation/success?:dollarAmount&:projectTitle",
@@ -61,6 +74,7 @@ const client = new ApolloClient({
     return (
         <ApolloProvider client={client}>
            <Navbar />
+              <RecentProjects />
                 <RouterProvider router={router}>
                 </RouterProvider>
             <Footer />
