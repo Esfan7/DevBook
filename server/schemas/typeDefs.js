@@ -70,7 +70,7 @@ const typeDefs = gql`
 
     type Query {
       projects: [Project]
-      project(_id: ID!): Project
+      project(_id: ID): Project
       donations: [Donation]
       donation(_id: ID!): Donation
       comments: [Comment]

@@ -1,23 +1,35 @@
-import React from "react";
+import React, {useState} from "react";
 import { List, Input, Button } from 'antd';
+import { useQuery, useMutation } from '@apollo/client';
+import { ADD_COMMENT } from '../utils/mutations';
+// import { QUERY_SINGLE_PROJECT} from '../utils/queries';
 const { TextArea } = Input;
 
+const Comments = ({comments, projectId, projectData}) => {
 
-const onChange = (e) => {
-    console.log('Change:', e.target.value);
-  };
+    const [commentText, setCommentText] = useState('');
+    const [commentList, setCommentList] = useState(comments);
+    const [addComment, {loading, error, data}] = useMutation(ADD_COMMENT);
+    // const { loading1, err1, data1, refetch} = useQuery(QUERY_SINGLE_PROJECT,{
+    //     variables: {
+    //         id: projectId
+    //       }
+    // });
 
-const handleCommentSubmit = (projectId) =>{
-    const content = document.getElementById('commentInputForm').value;
-    console.log(`
-    Comment submitted:
-    User: test user
-    Text: ${content}
-    projectId: ${projectId}`)
-};
 
-const Comments = ({comments, projectId}) => {
+    const handleCommentSubmit = async () => {
+        addComment({
+            variables: {
+                username: "ckarline",
+                comment: commentText,
+                projectId: projectId
+            }
+        });
+        setCommentText('')
 
+        
+    }
+    
     return (
         <div id="commentsContainer">
             <p>Comments</p>
@@ -29,9 +41,9 @@ const Comments = ({comments, projectId}) => {
                         <List.Item>
                             <List.Item.Meta
                             title={`User: ${item.username}`}
-                            description={`Content: ${item.content}`}
+                            description={`Content: ${item.comment}`}
                             />
-                            <p>TimeStamp: {item.timestamp}</p>
+                            <p>TimeStamp: {item.createdAt}</p>
                         </List.Item>
                     )}
                 />
@@ -46,8 +58,9 @@ const Comments = ({comments, projectId}) => {
                         height: 120,
                         resize: 'none',
                     }}
-                    onChange={onChange}
+                    onChange={e=> setCommentText(e.target.value)}
                     placeholder="Comment here"
+                    value={commentText}
                 />
                 <Button type="primary" onClick={()=>{handleCommentSubmit(projectId)}}>Submit</Button>
             </div>
