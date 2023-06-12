@@ -157,8 +157,12 @@ main().catch(err=> console.log(err))
 
 
 //declare a route
+// app.get('/', (req, res) => {
+//     res.sendFile(__dirname + 'client/public/index.html');
+// });
+
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + 'client/public/index.html');
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
 app.use("/api/project", projectRoutes)
@@ -169,6 +173,7 @@ app.use("/api/message", messageRoutes)
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
+
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {
