@@ -41,7 +41,7 @@ const client = new ApolloClient({
  const App = () => {
     const router = createBrowserRouter([
         {
-          path: "/",
+          path: "https://stark-harbor-85471.herokuapp.com/",
           // element: <div>Placeholder for homepage <Link to="/profile">Profile Page</Link></div>,
           element: <RecentProjects/>
         },
