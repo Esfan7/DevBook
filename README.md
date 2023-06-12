@@ -29,7 +29,12 @@ DevBook is a collaborative platform designed to connect web developers and provi
 Simply click on the following link to be redirected to the deployed page: [Click Here]()
 
 ## Usage
-This application will allow users to create an account, make a post, view posts and contributions by other users, and contribute to other users' projects. Users will be able to search for projects done by other web developers and interact with other users' posts by adding comments. Donors will be able to see a dashboard of the status of a project they contributed to by viewing milestones, dates, and budget. When a project is finished, the donors will be notified.
+1. **Create Account**: Get started by creating your own DevBook account.
+2. **Create and Share Projects**: reate and post your web development projects. Provide a detailed description, add visuals, and set goals.
+3. **Explore and Discover**: Use the search functionality to find projects in specific domains or by specific developers.
+4. **Engage and Interact**: Interact with other users' projects by leaving comments, and providing feedback.
+5. **Contribute and Support**: Show your support for other developers by making financial contributions to their projects. Keep track of your contributions and project statuses through a dedicated dashboard.
+6. **Milestones and Notifications**: As a donor, you'll receive notifications when projects reach significant milestones or when they are successfully completed.
 
 ### Routes
 
