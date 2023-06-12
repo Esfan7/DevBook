@@ -1,26 +1,15 @@
-// import React from 'react';
-// import AppContainer from './components/AppContainer';
-
-// const App = () => {
-
-// return <AppContainer />;
-
-// }
-
-// export default App;
 
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink} from '@apollo/client';
 
 import './index.css';
 import './normalize.css'
 import ProfilePage from './components/pages/ProfilePage';
 import ProjectPage from './components/pages/ProjectPage';
-
 import testProjects from './testData';
 import DonationSuccessPage from './components/pages/DonationSuccessPage';
-import Navbar from './components/Navbar';
+import Navbar from 'components/Navbar';
 import Footer from './components/Footer';
 
 import {
@@ -28,18 +17,24 @@ import {
     RouterProvider,
   } from "react-router-dom";
 import CreateProject from './components/pages/CreateProject';
-import CreateMessage from './components/pages/CreateMessage';
+
 
   
 
+const httpLink = createHttpLink({
+  uri: `${rootUrl}/graphql`,
+});
 
-
-const client = new ApolloClient({
-    uri: '/graphql',
-    cache: new InMemoryCache(),
-  });
+// const client = new ApolloClient({
+//     uri: '/graphql',
+//     cache: new InMemoryCache(),
+//   });
  
-   
+const client = new ApolloClient({
+  link: httpLink,
+  cache: new InMemoryCache(),
+});
+
  const App = () => {
     const router = createBrowserRouter([
         {
@@ -56,7 +51,8 @@ const client = new ApolloClient({
           },
           {
             path: "/project/:projectId",
-            element: <ProjectPage projects={testProjects} />
+            element: <ProjectPage />
+            // element: <ProjectPage projects={testProjects} />
           },
           {
             path: "/create-project",
@@ -78,7 +74,7 @@ const client = new ApolloClient({
     return (
         <ApolloProvider client={client}>
            <Navbar />
-
+              <RecentProjects />
                 <RouterProvider router={router}>
                 </RouterProvider>
             <Footer />

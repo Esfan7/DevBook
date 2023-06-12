@@ -13,7 +13,7 @@ const milestoneSchema = Schema({
         default: () => new mongoose.Types.ObjectId()
     },
     date: {
-        type: Date,
+        type: String,
         required: true
     },
     description: {
