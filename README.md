@@ -8,7 +8,6 @@ by Cristino Castro, Daniella Ferrufino, Esfandiar Behbehani, Dante Ramsey ![Gith
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [Usage](#usage)
-  - [Routes](#routes)
 - [License](#license)
 
 ## Description
@@ -35,21 +34,6 @@ Simply click on the following link to be redirected to the deployed page: [Click
 4. **Engage and Interact**: Interact with other users' projects by leaving comments, and providing feedback.
 5. **Contribute and Support**: Show your support for other developers by making financial contributions to their projects. Keep track of your contributions and project statuses through a dedicated dashboard.
 6. **Milestones and Notifications**: As a donor, you'll receive notifications when projects reach significant milestones or when they are successfully completed.
-
-### Routes
-
-GET - /api/project/
-List of projects
-
-GET = /api/donate/:project_id
-Get all donations for a specific project
-
-POST - /api/project/
-Create a project
-Keys: title,description, goal :number , picture, completion :date
-
-POST = /api/donate/
-Keys: amount :number, name, comment, project_id
 
 ## License
 This application is licensed under the MIT license.
