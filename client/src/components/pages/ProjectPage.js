@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 
 import { Button, Space, Timeline, Progress, Drawer} from 'antd';
 import Comments from '../Comments';
-// import { QUERY_SINGLE_PROJECT } from '../../utils/queries';
-import testProjects from '../../testData';
+import { QUERY_SINGLE_PROJECT } from '../../utils/queries';
+import { ADD_DONATION } from '../../utils/mutations';
+// import testProjects from '../../testData';
 
 
-const ProjectPage = ({projects}) => {
+// const ProjectPage = ({projects}) => {
+const ProjectPage = () => {
+    const { projectId } = useParams();
+
     const [open, setOpen] = useState(false);
+    const [donationValue, setDonationValue] = useState(0);
     const [showNotification, setShowNotification ] = useState(false);
+    const [addDonation] = useMutation(ADD_DONATION);
     const showDrawer = () => {
         setOpen(true);
     };
@@ -19,42 +25,54 @@ const ProjectPage = ({projects}) => {
         setShowNotification(false)
     };
 
-    const { projectId } = useParams();
     // const project = projects[projectId-1];
-    const project = testProjects[projectId-1];
+    // const project = testProjects[projectId-1];
 
-    // const { loading, projectData } = useQuery(QUERY_SINGLE_PROJECT, {
-    //     variables: {_id: projectId}
-    // });
-    const loading = false;
+    const { loading, err, data} = useQuery(QUERY_SINGLE_PROJECT,{
+        variables: {
+            id: projectId
+          }
+    });
 
-    const handlePayment = () => {
-        const donationAmount= document.getElementById('dollarAmountInput').value;
-        console.log(typeof donationAmount)
-        if(donationAmount !== ''){
+    // const project = result.data.project
+
+    const handlePayment = (e) => {
+        e.preventDefault();
+        addDonation({
+            variables: {
+                amount: Number(donationValue),
+                username: 'ckarline',
+                comment: 'fake comment',
+                projectId: projectId
+            }
+        })
+        if(donationValue !== 0){
             setShowNotification(true);
         } 
     }
+
     if(loading){
         return <div>loading</div>
-    } else{
+    } else if(err) {
+        return <div>error</div>
+    } else {
         return (
             <div id="projectPageContainer" className="flex flex-col"> 
                 <div id="projectDetailsContainer" className="flex flex-row flex-wrap">
                     <div id="title">
                         <p>Project ID: {projectId}</p>
-                        <p>Title: {project.title}</p>
-                        <p>Funding Goal: ${project.fundingGoal}</p>
-                        <p>Project Status: {project.status}</p>
+                        <p>Title: {data.project.title}</p>
+                        <p>Funding Goal: ${data.project.fundingGoal}</p>
+                        <p>Project Status: {data.project.status}</p>
                     </div>
                     <div>
-                        <p id="description">Description: <br></br><br></br>{project.description}</p>
+                        <p id="description">Description: <br></br><br></br>{data.project.description}</p>
                     </div>
                 </div>
                 <div id="milestonesContainer">
                     <p>Milestones:</p>
                     <Timeline
-                        items={project.milestones.map((milestone)=> {
+                        items={data.project.milestones.map((milestone)=> {
                             return(
                                     {
                                         children: `${milestone.date}: ${milestone.description}, Status: ${milestone.status}`
@@ -66,28 +84,27 @@ const ProjectPage = ({projects}) => {
                 <div id="donationsContainer">
                     <p>Donations:</p>
                     <Space wrap>
-                        <Progress type="circle" percent={100*(project.donations/project.fundingGoal)}/>
+                        <Progress type="circle" percent={100*(data.project.donationCount/data.project.fundingGoal)}/>
                     </Space>
                     <Button type="primary" onClick={() => showDrawer()}>Donate</Button>
                     <Drawer title="Donate" placement="right" onClose={onClose} open={open}>
                         <form id="donationForm" action='/donation/success'>
                             <p>Enter donation amount below</p><br></br>
-                            <p>{project.title}</p>
-                            <p>Funding Gloal: {project.fundingGoal}</p>
-                            <p>Only ${project.fundingGoal-project.donations} more to meet the goal! </p>
+                            <p>{data.project.title}</p>
+                            <p>Funding Gloal: {data.project.fundingGoal}</p>
+                            <p>Only ${data.project.fundingGoal-data.project.donationCount} more to meet the goal! </p>
                             <label htmlFor = "dollarAmount">$ </label>
-                            <input type="text" name="dollarAmount" id="dollarAmountInput" required pattern="^[1-9]\d*(\.\d+)?$"/>
+                            <input type="text" name="dollarAmount" id="dollarAmountInput" required pattern="^[1-9]\d*(\.\d+)?$" onChange={(e)=> setDonationValue(e.target.value)}/>
                             <p>*positive number only</p>
-                            <Button htmlType="submit" type="primary" onClick={()=>handlePayment()}>Submit Payment Request</Button>
+                            <Button htmlType="submit" type="primary" onClick={(e)=>handlePayment(e)}>Submit Payment Request</Button>
                             {
                                 showNotification ? <p>Submitted!</p> : null
                             }
-                            <input type="text" name="projectTitle" id="projectTitle" defaultValue={project.title} style={{visibility:"hidden"}} />
+                            <input type="text" name="projectTitle" id="projectTitle" defaultValue={data.project.title} style={{visibility:"hidden"}}/>
                         </form>
-                        
                     </Drawer>
                 </div>
-                <Comments comments={project.comments} projectId={project._id}/>
+                <Comments comments={data.project.comments} projectId={data.project._id}/>
             </div>
         )
     };
