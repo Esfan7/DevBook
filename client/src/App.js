@@ -20,7 +20,7 @@ import {
 import CreateProject from './components/pages/CreateProject';
 
 
-const rootUrl = 'http://localhost:3001'
+const rootUrl = 'https://stark-harbor-85471.herokuapp.com/'
 
 const httpLink = createHttpLink({
   uri: `${rootUrl}/graphql`,
