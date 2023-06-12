@@ -1,0 +1,34 @@
+.footer {
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
+}
+  
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.footer-content p {
+    margin: 0 10px;
+    font-size: 14px;
+    color: #333;
+}
+  
+.footer-content a {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+}
+  
+.footer-content a svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.footer-content a:hover {
+  color: #000;
+}
