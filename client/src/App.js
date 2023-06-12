@@ -6,10 +6,11 @@ import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink} from '@apo
 import './index.css';
 import './normalize.css'
 import ProfilePage from './components/pages/ProfilePage';
+import RecentProjects from './components/RecentProjects';
 import ProjectPage from './components/pages/ProjectPage';
 import testProjects from './testData';
 import DonationSuccessPage from './components/pages/DonationSuccessPage';
-import Navbar from 'components/Navbar';
+import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
 import {
@@ -19,7 +20,7 @@ import {
 import CreateProject from './components/pages/CreateProject';
 
 
-  
+const rootUrl = 'http://localhost:3001'
 
 const httpLink = createHttpLink({
   uri: `${rootUrl}/graphql`,
@@ -39,7 +40,8 @@ const client = new ApolloClient({
     const router = createBrowserRouter([
         {
           path: "/",
-          element: <div>Placeholder for homepage <Link to="/profile">Profile Page</Link></div>,
+          // element: <div>Placeholder for homepage <Link to="/profile">Profile Page</Link></div>,
+          element: <RecentProjects/>
         },
         {
             path: "/profile",
@@ -58,10 +60,10 @@ const client = new ApolloClient({
             path: "/create-project",
             element: <CreateProject />
           },
-          {
-            path: "/messenger",
-            element: <CreateMessage />
-          },
+          // {
+          //   path: "/messenger",
+          //   element: <CreateMessage />
+          // },
           {
             path: "/donation/success?:dollarAmount&:projectTitle",
             element: <DonationSuccessPage />
@@ -74,7 +76,6 @@ const client = new ApolloClient({
     return (
         <ApolloProvider client={client}>
            <Navbar />
-              <RecentProjects />
                 <RouterProvider router={router}>
                 </RouterProvider>
             <Footer />

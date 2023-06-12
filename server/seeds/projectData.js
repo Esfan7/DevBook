@@ -71,10 +71,10 @@ const projects =
         _id: '6484003059041faece332713',
         createdAt: '5/4/2021, 10:53:19 PM',
         ownerUsername: 'danBrown',
-        title: 'Tutoring Exchange',
-        description: `With over 4500 tutors available, the Tutoring Exchange provides a forum for tutoring on various college subjects`,
-        fundingGoal: 50000,
-        status: 'Completed',
+        title: 'Bitcoin Plus',
+        description: `Bitcoin Plus is an improvement of Bitcoin. It provides unlimited and worthless digital currency to everybody on earth`,
+        fundingGoal: 300000,
+        status: 'In Progress',
         donations: [],
         comments: ['6484003059041faece3326fa','6484003059041faece3326fd'],
         milestones: [
@@ -91,12 +91,12 @@ const projects =
             {
                 date: '03/20/2024',
                 description: 'Testing done',
-                status: 'Completed',
+                status: 'In Progress',
             },
             {
                 date: '03/28/2024',
                 description: 'Project finish',
-                status: 'Completed',
+                status: 'In Progress',
             }
         ],
     }
