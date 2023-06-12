@@ -11,3 +11,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+fieldset{
+  border: none;
+  display: flex;
+  gap: 10px;
+}
+
+Footer{
+  position: fixed;
+  bottom: 0;
+}
+.mySpace{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.mySpace > div{
+  width: 30%;
+}
