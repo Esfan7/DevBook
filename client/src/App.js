@@ -10,7 +10,7 @@ import RecentProjects from './components/RecentProjects';
 import ProjectPage from './components/pages/ProjectPage';
 import testProjects from './testData';
 import DonationSuccessPage from './components/pages/DonationSuccessPage';
-import Navbar from './components/Navbar';
+import Navbar2 from './components/Navbar2';
 import Footer from './components/Footer';
 
 import {
@@ -77,7 +77,7 @@ const client = new ApolloClient({
       ]);
     return (
         <ApolloProvider client={client}>
-           <Navbar />
+           <Navbar2 />
                 <RouterProvider router={router}>
                 </RouterProvider>
             <Footer />
