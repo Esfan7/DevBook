@@ -10,7 +10,7 @@ import RecentProjects from './components/RecentProjects';
 import ProjectPage from './components/pages/ProjectPage';
 import testProjects from './testData';
 import DonationSuccessPage from './components/pages/DonationSuccessPage';
-// import Navbar from './components/Navbar';
+import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
 import {
@@ -21,6 +21,8 @@ import CreateProject from './components/pages/CreateProject';
 
 
 const rootUrl = 'https://stark-harbor-85471.herokuapp.com/'
+// const rootUrl = 'http://localhost:3001'
+
 
 const httpLink = createHttpLink({
   uri: `${rootUrl}/graphql`,
@@ -75,7 +77,7 @@ const client = new ApolloClient({
       ]);
     return (
         <ApolloProvider client={client}>
-           {/* <Navbar /> */}
+           <Navbar />
                 <RouterProvider router={router}>
                 </RouterProvider>
             <Footer />
