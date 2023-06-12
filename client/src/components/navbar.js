@@ -2,7 +2,7 @@ import React from 'react';
 import { CodeOutlined, LoginOutlined, UserOutlined, MailOutlined, SearchOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import { useState } from 'react';
-import  SearchBar   from './SearchBar';
+import  SearchBar   from './searchBar';
 import { useNavigate } from 'react-router-dom';
 const items = [
     {
@@ -47,7 +47,7 @@ const Navbar = () => {
         // <div className='w-full m-2 border-b-8 py-1 my-4' >
         // <Menu  onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
         <div style={{height:'10vh', backgroundColor:'rgb(119, 124, 124)'}}>
-            <Menu style={{backgroundColor:'rgb(119, 124, 124)'}} onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />;
+            <Menu style={{backgroundColor:'rgb(119, 124, 124)'}} onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
         </div>
     );
 };
