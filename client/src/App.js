@@ -41,25 +41,25 @@ const client = new ApolloClient({
  const App = () => {
     const router = createBrowserRouter([
         {
-          path: "https://stark-harbor-85471.herokuapp.com/",
+          path: `${rootUrl}/`,
           // element: <div>Placeholder for homepage <Link to="/profile">Profile Page</Link></div>,
           element: <RecentProjects/>
         },
         {
-            path: "/profile",
+            path: `${rootUrl}/profile`,
             element: <ProfilePage/>,
           },
           {
-            path: "/project",
+            path: `${rootUrl}/project`,
             element: <ProjectPage projects={testProjects} />
           },
           {
-            path: "/project/:projectId",
+            path: `${rootUrl}/project/:projectId`,
             element: <ProjectPage />
             // element: <ProjectPage projects={testProjects} />
           },
           {
-            path: "/create-project",
+            path: `${rootUrl}/create-project`,
             element: <CreateProject />
           },
           // {
@@ -67,11 +67,11 @@ const client = new ApolloClient({
           //   element: <CreateMessage />
           // },
           {
-            path: "/donation/success?:dollarAmount&:projectTitle",
+            path: `${rootUrl}/donation/success?:dollarAmount&:projectTitle`,
             element: <DonationSuccessPage />
           },
           {
-            path: "/donation/success",
+            path: `${rootUrl}/donation/success`,
             element: <DonationSuccessPage />
           }
       ]);
