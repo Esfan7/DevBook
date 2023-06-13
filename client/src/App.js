@@ -20,7 +20,8 @@ import {
 import CreateProject from './components/pages/CreateProject';
 
 
-const rootUrl = 'https://stark-harbor-85471.herokuapp.com/'
+// const rootUrl = 'https://stark-harbor-85471.herokuapp.com/'
+const rootUrl = 'http://localhost:3001'
 
 const httpLink = createHttpLink({
   uri: `${rootUrl}/graphql`,
@@ -42,6 +43,10 @@ const client = new ApolloClient({
           path: "/",
           // element: <div>Placeholder for homepage <Link to="/profile">Profile Page</Link></div>,
           element: <RecentProjects/>
+        },
+        {
+            path: "/profile/:username",
+            element: <ProfilePage />
         },
         {
             path: "/profile",
