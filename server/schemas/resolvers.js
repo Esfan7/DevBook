@@ -57,8 +57,8 @@ const resolvers = {
             const messages = await Messages.find({sender: sender});
             return messages;
         },
-        messagesReceived: async (parent, { receiver, hasBeenRead }) => {
-            const messages = await Messages.find({receiver: receiver, hasBeenRead: hasBeenRead});
+        messagesReceived: async (parent, { receiver }) => {
+            const messages = await Messages.find({receiver: receiver});
             return messages;
         },
         message: async (parent, { _id }) => {

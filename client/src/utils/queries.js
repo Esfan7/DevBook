@@ -85,8 +85,8 @@ export const QUERY_MESSAGES = gql`
 `;
 
 export const QUERY_MESSAGES_RECEIVED = gql`
-  query messagesReceived($receiver: String!, $hasBeenRead: Boolean) {
-    messagesReceived(receiver: $receiver, hasBeenRead: $hasBeenRead) {
+  query messagesReceived($receiver: String!) {
+    messagesReceived(receiver: $receiver) {
       _id
       createdAt
       sender
